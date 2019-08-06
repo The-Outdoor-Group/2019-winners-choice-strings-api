@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @bow.brand.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @bow.type.name %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bow.name %>
+</p>
+
+<%= link_to 'Edit', edit_bow_path(@bow) %> |
+<%= link_to 'Back', bows_path %>
