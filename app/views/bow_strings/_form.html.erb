@@ -1,0 +1,42 @@
+<%= form_with(model: bow_string, local: true) do |form| %>
+  <% if bow_string.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bow_string.errors.count, "error") %> prohibited this bow_string from being saved:</h2>
+
+      <ul>
+      <% bow_string.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :strand_1_image %>
+    <%= form.text_field :strand_1_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :strand_2_image %>
+    <%= form.text_field :strand_2_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :serving_image %>
+    <%= form.text_field :serving_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color_id %>
+    <%= form.number_field :color_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :material_id %>
+    <%= form.number_field :material_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

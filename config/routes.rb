@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :bow_strings
+  resources :colors
+  resources :materials
   resources :bows
   resources :types
   resources :brands

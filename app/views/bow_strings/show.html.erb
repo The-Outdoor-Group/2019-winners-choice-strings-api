@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Strand 1 image:</strong>
+  <%= @bow_string.strand_1_image %>
+</p>
+
+<p>
+  <strong>Strand 2 image:</strong>
+  <%= @bow_string.strand_2_image %>
+</p>
+
+<p>
+  <strong>Serving image:</strong>
+  <%= @bow_string.serving_image %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @bow_string.color_id %>
+</p>
+
+<p>
+  <strong>Material:</strong>
+  <%= @bow_string.material_id %>
+</p>
+
+<%= link_to 'Edit', edit_bow_string_path(@bow_string) %> |
+<%= link_to 'Back', bow_strings_path %>

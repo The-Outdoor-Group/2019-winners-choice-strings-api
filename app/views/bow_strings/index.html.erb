@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bow Strings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Strand 1 image</th>
+      <th>Strand 2 image</th>
+      <th>Serving image</th>
+      <th>Color</th>
+      <th>Material</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bow_strings.each do |bow_string| %>
+      <tr>
+        <td><%= bow_string.strand_1_image %></td>
+        <td><%= bow_string.strand_2_image %></td>
+        <td><%= bow_string.serving_image %></td>
+        <td><%= bow_string.color_id %></td>
+        <td><%= bow_string.material_id %></td>
+        <td><%= link_to 'Show', bow_string %></td>
+        <td><%= link_to 'Edit', edit_bow_string_path(bow_string) %></td>
+        <td><%= link_to 'Destroy', bow_string, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bow String', new_bow_string_path %>
