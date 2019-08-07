@@ -14,22 +14,22 @@ class BowsController < ApplicationController
 
   # GET /bows/new
   def new
-    @brand_options = Brand.all.map{ |b| [b.name, b.id]}
-    @type_options = Type.all.map{ |t| [t.name, t.id]}
+    @brand_options = Brand.all.map{ |b| [b.name, b.id] }
+    @type_options = Type.all.map{ |t| [t.name, t.id] }
     @bow = Bow.new
   end
 
   # GET /bows/1/edit
   def edit
-    @brand_options = Brand.all.map{ |b| [b.name, b.id]}
-    @type_options = Type.all.map{ |t| [t.name, t.id]}
+    @brand_options = Brand.all.map{ |b| [b.name, b.id] }
+    @type_options = Type.all.map{ |t| [t.name, t.id] }
   end
 
   # POST /bows
   # POST /bows.json
   def create
-    @brand_options = Brand.all.map{ |b| [b.name, b.id]}
-    @type_options = Type.all.map{ |t| [t.name, t.id]}
+    @brand_options = Brand.all.map{ |b| [b.name, b.id] }
+    @type_options = Type.all.map{ |t| [t.name, t.id] }
     @bow = Bow.new(bow_params)
 
     respond_to do |format|

@@ -14,16 +14,22 @@ class BowStringsController < ApplicationController
 
   # GET /bow_strings/new
   def new
+    @material_options = Material.all.map{ |m| [m.name, m.id] }
+    @color_options = Color.all.map{ |c| [c.name, c.id] }
     @bow_string = BowString.new
   end
 
   # GET /bow_strings/1/edit
   def edit
+    @material_options = Material.all.map{ |m| [m.name, m.id] }
+    @color_options = Color.all.map{ |c| [c.name, c.id] }
   end
 
   # POST /bow_strings
   # POST /bow_strings.json
   def create
+    @brand_options = Brand.all.map{ |b| [b.name, b.id] }
+    @type_options = Type.all.map{ |t| [t.name, t.id] }
     @bow_string = BowString.new(bow_string_params)
 
     respond_to do |format|
