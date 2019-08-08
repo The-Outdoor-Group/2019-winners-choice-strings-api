@@ -4,7 +4,11 @@ class BowsController < ApplicationController
   # GET /bows
   # GET /bows.json
   def index
-    @bows = Bow.all
+    if params[:name]
+      @bows = Bow.whose_name_starts_with(params[:name])
+    else
+      @bows = Bow.all
+    end
   end
 
   # GET /bows/1

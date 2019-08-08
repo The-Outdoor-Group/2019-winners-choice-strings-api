@@ -4,7 +4,11 @@ class ColorsController < ApplicationController
   # GET /colors
   # GET /colors.json
   def index
-    @colors = Color.all
+    if params[:name]
+      @colors = Color.whose_name_or_code_starts_with(params[:name])
+    else
+      @colors = Color.all
+    end
   end
 
   # GET /colors/1

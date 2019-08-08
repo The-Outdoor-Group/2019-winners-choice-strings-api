@@ -12,6 +12,12 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Add search, take advantage of PostgreSQL's full text search
 gem 'pg_search'
 
+# Add autocomplete to serch fields
+gem 'select2-rails'
+
+# Add Underscore functional js library
+gem 'underscore-rails'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

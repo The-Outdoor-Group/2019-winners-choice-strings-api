@@ -4,7 +4,12 @@ class BowStringsController < ApplicationController
   # GET /bow_strings
   # GET /bow_strings.json
   def index
-    @bow_strings = BowString.all
+    if params[:color]
+      # @bow_strings = BowString.search_by_color_id(params[:color])
+      @bow_strings = BowString.whose_name_starts_with(params[:color])
+    else
+      @bow_strings = BowString.all
+    end
   end
 
   # GET /bow_strings/1
@@ -28,8 +33,8 @@ class BowStringsController < ApplicationController
   # POST /bow_strings
   # POST /bow_strings.json
   def create
-    @brand_options = Brand.all.map{ |b| [b.name, b.id] }
-    @type_options = Type.all.map{ |t| [t.name, t.id] }
+    @material_options = Material.all.map{ |m| [m.name, m.id] }
+    @color_options = Color.all.map{ |c| [c.name, c.id] }
     @bow_string = BowString.new(bow_string_params)
 
     respond_to do |format|

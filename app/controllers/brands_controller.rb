@@ -4,7 +4,11 @@ class BrandsController < ApplicationController
   # GET /brands
   # GET /brands.json
   def index
-    @brands = Brand.all
+    if params[:name]
+      @brands = Brand.whose_name_starts_with(params[:name])
+    else
+      @brands = Brand.all
+    end
   end
 
   # GET /brands/1

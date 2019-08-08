@@ -2,6 +2,11 @@
 
 <h1>Colors</h1>
 
+<%= form_tag colors_path, method: :get do %>
+  <%= text_field_tag 'name', params[:term], placeholder: "Enter color name or color code" %>
+  <%= submit_tag 'Search!' %>
+<% end %>
+
 <table>
   <thead>
     <tr>
