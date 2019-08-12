@@ -2,40 +2,45 @@
 
 <article>
   <header>
-    <h1><%= @bow_string.color.name %> Bow String</h1>
-    <ul><li><strong>ID:</strong> <%= @bow_string.id %></li>
+    <h1 style="font-size: 250%; line-height: 4rem; padding-bottom: 1rem; border-bottom: 0.1rem solid;">
+      <%= @bow_string.color.name %> Bow String
+    </h1>
+    <ul style="background: #000; color: #fff; padding: 1rem 3rem 1rem 3rem; margin: -2rem auto 0 auto;">
+      <li><strong>ID:</strong> <%= @bow_string.id %></li>
       <li><strong>Color Name:</strong> <%= @bow_string.color.name %></li>
     </ul>
   </header>
 </article>
 
-<article>
-<header>
-  <h3><%= @bow_string.color.name %> Strand 1 image:</h3>
-  <img src="<%= @bow_string.strand_1_image %>" class="color-1-image" role="presentation"/>
-</header>
-</article>
-
-<article>
-<header>
-  <h3><%= @bow_string.color.name %> Strand 2 image:</h3>
-  <img src="<%= @bow_string.strand_2_image %>" class="color-2-image" role="presentation"/>
-</header>
-</article>
-
-<article>
-<% if @bow_string.color.count > 1 %>
-  <header style="opacity:0.5;">
-    <h3><%= @bow_string.color.name %> Serving image:</h3>
-    <p>Servings can only be made with solid colors. There is no serving in <%= @bow_string.color.name %>.</p>
-  </header>
-<% else %>
+<section style="padding: 2rem;">
+  <article style="padding: 2rem;">
   <header>
-    <h3><%= @bow_string.color.name %> Serving image:</h3>
-    <img src="<%= @bow_string.serving_image %>" class="color-2-image" role="presentation"/>
+    <h3>Strand 1 Image:</h3>
+    <img src="<%= @bow_string.strand_1_image %>" class="color-1-image" role="presentation"/>
   </header>
-<% end %>
-</article>
+  </article>
+
+  <article style="padding:2rem;">
+  <header>
+    <h3>Strand 2 Image:</h3>
+    <img src="<%= @bow_string.strand_2_image %>" class="color-2-image" role="presentation"/>
+  </header>
+  </article>
+
+  <article style="padding:2rem;">
+  <% if @bow_string.color.count > 1 %>
+    <header style="opacity:0.5;">
+      <h3>Serving Image:</h3>
+      <p>Servings can only be made with solid colors. There is no serving in <%= @bow_string.color.name %>.</p>
+    </header>
+  <% else %>
+    <header>
+      <h3>Serving Image:</h3>
+      <img src="<%= @bow_string.serving_image %>" class="color-2-image" role="presentation"/>
+    </header>
+  <% end %>
+  </article>
+</section>
 
 <article style="background: #000; color: #fff; padding: 3rem; margin: 1.5rem;">
   <header><h3 style="font-size: 200%; padding-bottom: 1rem;">About The <%= @bow_string.color.name %> Color</h3></header>
@@ -44,7 +49,13 @@
 
   <dl>
     <dt>Color Swatch</dt>
-    <dd><img src="<%= @bow_string.color.swatch_url %>"</dd>
+    <!-- <dd><img src="<#%= @bow_string.color.swatch_url %>"</dd> -->
+    <dd>
+      <div class="string-color-part" style="height: 8vh; width: 10vw; display: inline-flex;">
+        <div class="swatch-left-double" style="background: rgb(45, 145, 80); height: 100%; width: 50%;"></div>
+        <div class="swatch-right-double" style="background: rgb(39, 39, 39); height: 100%; width: 50%;"></div>
+      </div>
+    </dd>
   </dl>
 
   <dl>
