@@ -7,7 +7,7 @@ class BowString < ApplicationRecord
   # validates :color_id, uniqueness: { scope: :material_id }
   validates :color_id, uniqueness: true
 
-  validates :strand_1_image, :strand_2_image, :serving_image, presence: true
+  validates :materials, :strand_1_image, :strand_2_image, :serving_image, presence: true
 
   pg_search_scope :search_by_color_id, against: :color_id
 
