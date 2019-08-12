@@ -5,7 +5,6 @@ class BowStringsController < ApplicationController
   # GET /bow_strings.json
   def index
     if params[:color]
-      # @bow_strings = BowString.search_by_color_id(params[:color])
       @bow_strings = BowString.whose_name_starts_with(params[:color])
     else
       @bow_strings = BowString.all
@@ -15,26 +14,27 @@ class BowStringsController < ApplicationController
   # GET /bow_strings/1
   # GET /bow_strings/1.json
   def show
+    @materials = @bow_string.materials.map { |material| Material.find(material) }
   end
 
   # GET /bow_strings/new
   def new
-    @material_options = Material.all.map{ |m| [m.name, m.id] }
     @color_options = Color.all.map{ |c| [c.name, c.id] }
+    @materials = Material.all
     @bow_string = BowString.new
   end
 
   # GET /bow_strings/1/edit
   def edit
-    @material_options = Material.all.map{ |m| [m.name, m.id] }
     @color_options = Color.all.map{ |c| [c.name, c.id] }
+    @materials = Material.all
   end
 
   # POST /bow_strings
   # POST /bow_strings.json
   def create
-    @material_options = Material.all.map{ |m| [m.name, m.id] }
     @color_options = Color.all.map{ |c| [c.name, c.id] }
+    @materials = Material.all
     @bow_string = BowString.new(bow_string_params)
 
     respond_to do |format|
@@ -51,6 +51,8 @@ class BowStringsController < ApplicationController
   # PATCH/PUT /bow_strings/1
   # PATCH/PUT /bow_strings/1.json
   def update
+    @materials = Material.all
+
     respond_to do |format|
       if @bow_string.update(bow_string_params)
         format.html { redirect_to @bow_string, notice: 'Bow string was successfully updated.' }
@@ -73,6 +75,7 @@ class BowStringsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_bow_string
       @bow_string = BowString.find(params[:id])
@@ -80,6 +83,6 @@ class BowStringsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bow_string_params
-      params.require(:bow_string).permit(:strand_1_image, :strand_2_image, :serving_image, :color_id, :material_id)
+      params.require(:bow_string).permit(:strand_1_image, :strand_2_image, :serving_image, :color_id, materials:[])
     end
 end

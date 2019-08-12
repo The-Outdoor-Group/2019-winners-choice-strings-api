@@ -1,19 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Material:</strong>
-  <%= @bow_string.material.name %>
+  <strong>Materials:</strong>
+  <ul>
+  <% @materials.each do |material| %>
+    <li><%= material.name %></li>
+  <% end %>
+  </ul>
 </p>
 
 
 <p>
   <strong>Color:</strong>
   <%= @bow_string.color.name %>
-</p>
-
-<p>
-  <strong>Color id:</strong>
-  <%= @bow_string.color_id %>
 </p>
 
 <p>

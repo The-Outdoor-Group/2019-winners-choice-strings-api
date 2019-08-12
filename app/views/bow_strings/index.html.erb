@@ -22,7 +22,13 @@
   <tbody>
     <% @bow_strings.each do |bow_string| %>
       <tr>
-        <td><%= bow_string.material.name %></td>
+        <td>
+          <ul>
+            <% bow_string.materials.each do |material| %>
+              <li><%= Material.find(material).name %></li>
+            <% end %>
+          </ul>
+        </td>
         <td><%= bow_string.color.name %></td>
         <td><%= bow_string.strand_1_image %></td>
         <td><%= bow_string.strand_2_image %></td>

@@ -4,6 +4,7 @@ class CreateColors < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :code
       t.integer :count
+      t.string :swatch_url
 
       t.timestamps
     end

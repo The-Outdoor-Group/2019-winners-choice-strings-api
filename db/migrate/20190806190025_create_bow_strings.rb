@@ -5,7 +5,7 @@ class CreateBowStrings < ActiveRecord::Migration[5.2]
       t.string :strand_2_image
       t.string :serving_image
       t.integer :color_id
-      t.integer :material_id
+      t.integer :materials, array: true, default: []
 
       t.timestamps
     end

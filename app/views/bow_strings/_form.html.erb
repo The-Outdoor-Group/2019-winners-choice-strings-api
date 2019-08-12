@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :material_id %>
-    <%= form.select(:material_id, @material_options) %>
+    <%= form.label :materials %>
+    <%= form.collection_check_boxes(:materials, @materials, :id, :name, options = {include_hidden: false}) %>
   </div>
 
   <div class="field">

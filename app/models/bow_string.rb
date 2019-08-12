@@ -1,10 +1,10 @@
 class BowString < ApplicationRecord
   include PgSearch::Model
 
-  belongs_to :material
+  # belongs_to :material
   belongs_to :color
 
-  validates :material_id, uniqueness: true
+  # validates :color_id, uniqueness: { scope: :material_id }
   validates :color_id, uniqueness: true
 
   validates :strand_1_image, :strand_2_image, :serving_image, presence: true
@@ -13,7 +13,7 @@ class BowString < ApplicationRecord
 
   pg_search_scope :whose_name_starts_with,
                   associated_against: {
-                    material: :name,
+                    # material: :name,
                     color: :name
                   },
                   using: {
