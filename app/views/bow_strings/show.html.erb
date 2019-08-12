@@ -1,34 +1,71 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Materials:</strong>
-  <ul>
-  <% @materials.each do |material| %>
-    <li><%= material.name %></li>
-  <% end %>
-  </ul>
-</p>
+<article>
+  <header>
+    <h1><%= @bow_string.color.name %> Bow String</h1>
+    <ul><li><strong>ID:</strong> <%= @bow_string.id %></li>
+      <li><strong>Color Name:</strong> <%= @bow_string.color.name %></li>
+    </ul>
+  </header>
+</article>
 
+<article>
+<header>
+  <h3><%= @bow_string.color.name %> Strand 1 image:</h3>
+  <img src="<%= @bow_string.strand_1_image %>" class="color-1-image" role="presentation"/>
+</header>
+</article>
 
-<p>
-  <strong>Color:</strong>
-  <%= @bow_string.color.name %>
-</p>
+<article>
+<header>
+  <h3><%= @bow_string.color.name %> Strand 2 image:</h3>
+  <img src="<%= @bow_string.strand_2_image %>" class="color-2-image" role="presentation"/>
+</header>
+</article>
 
-<p>
-  <strong>Strand 1 image:</strong>
-  <%= @bow_string.strand_1_image %>
-</p>
+<article>
+<% if @bow_string.color.count > 1 %>
+  <header style="opacity:0.5;">
+    <h3><%= @bow_string.color.name %> Serving image:</h3>
+    <p>Servings can only be made with solid colors. There is no serving in <%= @bow_string.color.name %>.</p>
+  </header>
+<% else %>
+  <header>
+    <h3><%= @bow_string.color.name %> Serving image:</h3>
+    <img src="<%= @bow_string.serving_image %>" class="color-2-image" role="presentation"/>
+  </header>
+<% end %>
+</article>
 
-<p>
-  <strong>Strand 2 image:</strong>
-  <%= @bow_string.strand_2_image %>
-</p>
+<article style="background: #000; color: #fff; padding: 3rem; margin: 1.5rem;">
+  <header><h3 style="font-size: 200%; padding-bottom: 1rem;">About The <%= @bow_string.color.name %> Color</h3></header>
 
-<p>
-  <strong>Serving image:</strong>
-  <%= @bow_string.serving_image %>
-</p>
+  <p>The color used for this bow string is <%= @bow_string.color.name %> (color code: <%= @bow_string.color.code%>).</p>
+
+  <dl>
+    <dt>Color Swatch</dt>
+    <dd><img src="<%= @bow_string.color.swatch_url %>"</dd>
+  </dl>
+
+  <dl>
+    <dt>Color Count</dt>
+    <dd><%= @bow_string.color.count%></dd>
+  </dl>
+
+  <dl>
+    <dt>Color Code</dt>
+    <dd><%= @bow_string.color.code%></dd>
+  </dl>
+
+  <footer>
+    <header><h5><%= @bow_string.color.name %> is available in the following materials:</h5></header>
+    <ul>
+      <% @materials.each do |material| %>
+        <li><%= material.name %></li>
+      <% end %>
+    </ul>
+  </footer>
+</article>
 
 <%= link_to 'Edit', edit_bow_string_path(@bow_string) %> |
 <%= link_to 'Back', bow_strings_path %>

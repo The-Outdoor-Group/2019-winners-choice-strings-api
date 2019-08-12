@@ -40,7 +40,7 @@
 @od_green_color = Color.create(name: "OD Green", code: "222", count: 1, swatch_url: "S3")
 @natural_white_color = Color.create(name: "Natural White", code: "333", count: 1, swatch_url: "S3")
 @winter_camo_color = Color.create(name: "Winter Camo", code: "530", count: 3, swatch_url: "S3")
-@speckled_green_black_color = Color.create(name: "Speckled Green/Black", code: "680", count: 2, swatch_url: "S3")
+@speckled_green_black_color = Color.create(name: "Speckled Green / Black", code: "680", count: 2, swatch_url: "S3")
 
 #---------------
 
