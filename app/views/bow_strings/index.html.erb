@@ -2,9 +2,10 @@
 
 <h1>Bow Strings</h1>
 
-<%= form_tag bow_strings_path, method: :get do %>
-  <%= text_field_tag 'color', params[:term], placeholder: "Enter bow string color" %>
-  <%= submit_tag 'Search!' %>
+<%= form_tag bow_strings_path, id: "bow-string-form", method: :get do %>
+  <select id="color" placeholder="Enter the string color"></select>
+  <!-- <#%= text_field_tag 'color', params[:term], placeholder: "Enter bow string color" %> -->
+  <!-- <#%= submit_tag 'Search!' %> -->
 <% end %>
 
 <table>
@@ -12,9 +13,6 @@
     <tr>
       <th>Material</th>
       <th>Color</th>
-      <th>Strand 1 image</th>
-      <th>Strand 2 image</th>
-      <th>Serving image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -30,9 +28,6 @@
           </ul>
         </td>
         <td><%= bow_string.color.name %></td>
-        <td><%= bow_string.strand_1_image %></td>
-        <td><%= bow_string.strand_2_image %></td>
-        <td><%= bow_string.serving_image %></td>
         <td><%= link_to 'Show', bow_string %></td>
         <td><%= link_to 'Edit', edit_bow_string_path(bow_string) %></td>
         <td><%= link_to 'Destroy', bow_string, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -48,3 +43,60 @@
   <li><%= link_to 'New Bow String', new_bow_string_path %></li>
   <li><%= link_to 'Reset View', bow_strings_path %></li>
 </ul>
+
+<script>
+
+  function formatState (state) {
+  if (!state.id) {
+    return state.text;
+  }
+
+  var baseUrl = "bow_strings/";
+  var $state = $(
+    '<span><img class="img-flag" /> <span></span></span>'
+  );
+
+  // Use .text() instead of HTML string concatenation to avoid script injection issues
+  $state.find("span").text(state.text);
+  $state.find("img").attr("src", baseUrl + "/" + state.element.value.toLowerCase() + ".png");
+
+console.log('$state: ', $state);
+  return $state;
+};
+
+
+  // jQuery(document).ready(function() {
+    console.log('started');
+    $('select#color').select2({
+      ajax: {
+        url: '/bow_strings',
+        dataType: 'json',
+        delay: 500,
+        data: function(params) {
+          console.log('params data(): ', params);
+          return { search: params.term };
+        },
+        processResults: function (data, params) {
+          console.log('---------------------------------');
+          console.log('data: ', data);
+          console.log('params: ', params);
+          console.log('---------------------------------');
+            return {
+              results: _.map(data, function (el) {
+                          console.log('el: ', el);
+                          return {
+                             color_id: el.color_id,
+                             color_name: el.color_name,
+                             materials: el.materials
+                          };
+                        })
+            }
+          }
+      },
+      placeholder: "Search by color name",
+      minimumInputLength: 3,
+      templateResult: function (item) { return `${item.color_name}` },
+      templateSelection: formatState
+    });
+  // });
+</script>

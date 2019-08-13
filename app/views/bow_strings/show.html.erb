@@ -47,7 +47,7 @@
 
   <p>The color used for this bow string is <%= @bow_string.color.name %> (color code: <%= @bow_string.color.code%>).</p>
 
-  <dl>
+  <dl style="padding:1rem;">
     <dt>Color Swatch</dt>
     <!-- <dd><img src="<#%= @bow_string.color.swatch_url %>"</dd> -->
     <dd>
@@ -58,12 +58,12 @@
     </dd>
   </dl>
 
-  <dl>
+  <dl style="padding:1rem;">
     <dt>Color Count</dt>
     <dd><%= @bow_string.color.count%></dd>
   </dl>
 
-  <dl>
+  <dl style="padding:1rem;">
     <dt>Color Code</dt>
     <dd><%= @bow_string.color.code%></dd>
   </dl>

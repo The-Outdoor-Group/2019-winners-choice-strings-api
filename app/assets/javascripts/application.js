@@ -10,8 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require underscore
-//= require select2
-//= require rails-ujs
+
 //= require activestorage
+//= require jquery
+//= require underscore
+//= require rails-ujs
+//= require select2-full
 //= require_tree .

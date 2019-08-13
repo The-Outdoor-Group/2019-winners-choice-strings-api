@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :materials %>
-    <%= form.collection_check_boxes(:materials, @materials, :id, :name, options = {include_hidden: false}) %>
+    <%= form.label :color_id %>
+    <%= form.select(:color_id, @color_options) %>
   </div>
 
   <div class="field">
-    <%= form.label :color_id %>
-    <%= form.select(:color_id, @color_options) %>
+    <%= form.label :materials %>
+    <%= form.collection_check_boxes(:materials, @materials, :id, :name, options = {include_hidden: false}) %>
   </div>
 
   <div class="field">

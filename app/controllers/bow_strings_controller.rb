@@ -4,11 +4,22 @@ class BowStringsController < ApplicationController
   # GET /bow_strings
   # GET /bow_strings.json
   def index
-    if params[:color]
-      @bow_strings = BowString.whose_name_starts_with(params[:color])
-    else
-      @bow_strings = BowString.all
+    # if params[:color]
+    #   @bow_strings = BowString.whose_name_starts_with(params[:color])
+    # else
+    #   @bow_strings = BowString.all
+    # end
+
+    respond_to do |format|
+      if params[:color]
+        @bow_strings = BowString.whose_name_starts_with(params[:color]).with_pg_search_highlight
+      else
+        @bow_strings = BowString.all
+      end
+      format.html
+      format.json
     end
+
   end
 
   # GET /bow_strings/1

@@ -13,7 +13,6 @@ class BowString < ApplicationRecord
 
   pg_search_scope :whose_name_starts_with,
                   associated_against: {
-                    # material: :name,
                     color: :name
                   },
                   using: {
