@@ -30,9 +30,20 @@ class BowStringsController < ApplicationController
 
   # GET /bow_strings/new
   def new
-    @color_options = Color.all.map{ |c| [c.name, c.id] }
-    @materials = Material.all
-    @bow_string = BowString.new
+
+    respond_to do |format|
+      # @color_options = Color.all.map{ |c| [c.name, c.id] }
+      @materials = Material.all
+      @bow_string = BowString.new
+
+      if params[:name]
+        @colors = Color.whose_name_or_code_starts_with(params[:name])
+      else
+        @colors = Color.all
+      end
+      format.json
+      format.html
+    end
   end
 
   # GET /bow_strings/1/edit

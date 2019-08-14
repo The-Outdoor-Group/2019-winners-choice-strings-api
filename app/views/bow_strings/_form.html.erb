@@ -11,9 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :color_id %>
-    <%= form.select(:color_id, @color_options) %>
+  <%= form_tag colors_path, id: "color-form", method: :get do %>
+    <select id="color-new-bow-string" placeholder="Enter the color name"></select>
+    <!-- <#%= text_field_tag 'color', params[:term], placeholder: "Enter bow string color" %> -->
+    <!-- <#%= submit_tag 'Search!' %> -->
+  <% end %>
+
+
+  <!-- <div class="field">
+    <#%= form.label :color_id %>
+    <#%= form.select(:color_id, @color_options) %>
+  </div> -->
+
+  <div>
+    <h5>Color Choice</h5>
+      <%= render :partial => 'color', :collection => @colors %>
   </div>
 
   <div class="field">
@@ -40,3 +52,70 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+    var $selectNewColor = $('select#color-new-bow-string');
+
+    $selectNewColor.select2({
+      ajax: {
+        allowClear: true,
+        url: function(params) {
+          return '/colors';
+        },
+        dataType: 'json',
+        delay: 500,
+        data: function(params) {
+          return { name: params.term };
+        },
+        processResults: function (data, params) {
+            return {
+              results: _.map(data, function (el) {
+                console.log('data: ', data);
+                          return {
+                            id: el.id,
+                            text: el.name,
+                            code: el.code,
+                            count: el.count,
+                            swatch_url: el.swatch_url
+                          };
+                        })
+            }
+          }
+      },
+      placeholder: "Search by color name",
+      minimumInputLength: 3,
+      templateResult: function (item) {
+        return item.text;
+      },
+      templateSelection: function (item) {
+        if (typeof item !== undefined) {
+          return `Please enter color name`;
+        }
+        else {
+          return item.text;
+          }
+      }
+    });
+
+    $selectNewColor.on('select2:select', function(e) {
+      console.log('select2:select: ', e.params.data);
+      $.ajax({
+        url: '/colors/' + e.params.data.id,
+        color: e.params.data,
+        method: 'get',
+        dataType: 'json'
+      }).done(
+        function(result) {
+
+          console.log('done result: ', result);
+        }
+      )
+      // window.location.href = `/bow_strings/${JSON.stringify(e.params.data.id)}`
+      /*
+        send this as json to the rails server so can
+        record the color id for the color_id
+        const colorId = send_to_route_to_get_color_id(e.params.data)
+      */
+    });
+
+</script>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  # get '/bow_strings/select_color/:id', to: 'bow_strings#select_color'
+
   resources :bow_strings
   resources :colors
   resources :materials
