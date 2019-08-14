@@ -12,7 +12,8 @@ class BowStringsController < ApplicationController
 
     respond_to do |format|
       if params[:color]
-        @bow_strings = BowString.whose_name_starts_with(params[:color]).with_pg_search_highlight
+        @bow_strings = BowString.whose_name_starts_with(params[:color]) #.with_pg_search_highlight
+        # @bow_strings = BowString.search_by_color_id(params[:color])
       else
         @bow_strings = BowString.all
       end

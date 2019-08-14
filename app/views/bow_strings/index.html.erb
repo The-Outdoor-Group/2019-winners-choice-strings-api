@@ -45,58 +45,45 @@
 </ul>
 
 <script>
-
-  function formatState (state) {
-  if (!state.id) {
-    return state.text;
-  }
-
-  var baseUrl = "bow_strings/";
-  var $state = $(
-    '<span><img class="img-flag" /> <span></span></span>'
-  );
-
-  // Use .text() instead of HTML string concatenation to avoid script injection issues
-  $state.find("span").text(state.text);
-  $state.find("img").attr("src", baseUrl + "/" + state.element.value.toLowerCase() + ".png");
-
-console.log('$state: ', $state);
-  return $state;
-};
-
-
-  // jQuery(document).ready(function() {
     console.log('started');
     $('select#color').select2({
       ajax: {
-        url: '/bow_strings',
+        allowClear: true,
+        url: function(params) {
+          return '/bow_strings/';
+        },
         dataType: 'json',
         delay: 500,
         data: function(params) {
-          console.log('params data(): ', params);
-          return { search: params.term };
+          return { color: params.term };
         },
         processResults: function (data, params) {
-          console.log('---------------------------------');
-          console.log('data: ', data);
-          console.log('params: ', params);
-          console.log('---------------------------------');
             return {
               results: _.map(data, function (el) {
                           console.log('el: ', el);
                           return {
-                             color_id: el.color_id,
-                             color_name: el.color_name,
-                             materials: el.materials
+                            id: el.color_id,
+                            text: el.color_name,
+                            materials: el.materials,
                           };
-                        })
+                        }),
+                        pagination: { more: true }
             }
           }
       },
       placeholder: "Search by color name",
       minimumInputLength: 3,
-      templateResult: function (item) { return `${item.color_name}` },
-      templateSelection: formatState
+      templateResult: function (item) {
+        return item.text;
+      },
+      templateSelection: function (item) {
+        if (typeof item !== undefined) {
+          return `Please enter string color`;
+        }
+        else {
+          return `<p>${item.text}</p>`;
+          }
+      }
     });
-  // });
+
 </script>
