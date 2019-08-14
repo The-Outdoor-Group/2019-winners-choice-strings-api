@@ -45,8 +45,9 @@
 </ul>
 
 <script>
-    console.log('started');
-    $('select#color').select2({
+    var $selectColor = $('select#color');
+
+    $selectColor.select2({
       ajax: {
         allowClear: true,
         url: function(params) {
@@ -60,14 +61,13 @@
         processResults: function (data, params) {
             return {
               results: _.map(data, function (el) {
-                          console.log('el: ', el);
                           return {
-                            id: el.color_id,
+                            id: el.id,
+                            color_id: el.color_id,
                             text: el.color_name,
                             materials: el.materials,
                           };
-                        }),
-                        pagination: { more: true }
+                        })
             }
           }
       },
@@ -81,9 +81,14 @@
           return `Please enter string color`;
         }
         else {
-          return `<p>${item.text}</p>`;
+          return item.text;
           }
       }
+    });
+
+    $selectColor.on('select2:select', function(e) {
+      console.log('select2:select: ', e.params.data);
+      window.location = `bow_strings/${e.params.data.id}`;
     });
 
 </script>
