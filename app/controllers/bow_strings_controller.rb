@@ -41,6 +41,9 @@ class BowStringsController < ApplicationController
       else
         @colors = Color.all
       end
+
+      # how do i handle the click event from search result?
+
       format.json
       format.html
     end

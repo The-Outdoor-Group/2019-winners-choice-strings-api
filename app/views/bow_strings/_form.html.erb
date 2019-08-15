@@ -25,8 +25,10 @@
 
   <div>
     <h5>Color Choice</h5>
-      <%= render :partial => 'color', :collection => @colors %>
+      <div id="result-div" style="min-height: 10vh;"></div>
   </div>
+
+  <!-- <#%= render :partial => 'color', :collection => @colors %> -->
 
   <div class="field">
     <%= form.label :materials %>
@@ -101,21 +103,21 @@
       console.log('select2:select: ', e.params.data);
       $.ajax({
         url: '/colors/' + e.params.data.id,
-        color: e.params.data,
         method: 'get',
         dataType: 'json'
       }).done(
         function(result) {
-
           console.log('done result: ', result);
+          const $resultEl = $('#result-div');
+          console.log('$resultEl: ', $resultEl);
+          let $resultElCopy = `<p>Buckskin</p>`;
+          $resultEl.innerText = $resultElCopy;
+          // return result;
+
+          // Got the color returned, now send it to the server so it can resend the data
+          // to this view as a @color
         }
       )
-      // window.location.href = `/bow_strings/${JSON.stringify(e.params.data.id)}`
-      /*
-        send this as json to the rails server so can
-        record the color id for the color_id
-        const colorId = send_to_route_to_get_color_id(e.params.data)
-      */
     });
 
 </script>
