@@ -11,22 +11,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :brand_id %>
-    <%= form.select(:brand_id, @brand_options) %>
+  <div class="form-group row">
+    <%= form.label :brand_id, class: "col-md-2 col-form-label" %>
+    <div class="col-md-10">
+      <%= form.select(:brand_id, @brand_options, {}, {class: "form-control"}) %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :type_id %>
-    <%= form.select(:type_id, @type_options) %>
+  <div class="form-group row">
+    <%= form.label :type_id, class: "col-md-2 col-form-label" %>
+    <div class="col-md-10">
+      <%= form.select(:type_id, @type_options, {}, {class: "form-control"}) %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group row">
+    <%= form.label :name, class: "col-md-2 col-form-label" %>
+    <div class="col-md-10">
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit class: "btn btn-primary btn-edit" %>
   </div>
 <% end %>

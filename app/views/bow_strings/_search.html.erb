@@ -1,0 +1,55 @@
+<%= form_tag bow_strings_path, id: "bow-string-form", method: :get do %>
+  <select id="color" placeholder="Enter the string color" class="form-control"></select>
+  <!-- <#%= text_field_tag 'color', params[:term], placeholder: "Enter bow string color" %> -->
+  <!-- <#%= submit_tag 'Search!' %> -->
+<% end %>
+
+<script>
+    var $selectColor = $('select#color');
+
+    $selectColor.select2({
+      theme: "bootstrap",
+      ajax: {
+        allowClear: true,
+        url: function(params) {
+          return '/bow_strings/';
+        },
+        dataType: 'json',
+        delay: 500,
+        data: function(params) {
+          return { color: params.term };
+        },
+        processResults: function (data, params) {
+            return {
+              results: _.map(data, function (el) {
+                          return {
+                            id: el.id,
+                            color_id: el.color_id,
+                            text: el.color_name,
+                            materials: el.materials,
+                          };
+                        })
+            }
+          }
+      },
+      placeholder: "Search by color name",
+      minimumInputLength: 3,
+      templateResult: function (item) {
+        return item.text;
+      },
+      templateSelection: function (item) {
+        if (typeof item !== undefined) {
+          return `Please enter string color`;
+        }
+        else {
+          return item.text;
+          }
+      }
+    });
+
+    $selectColor.on('select2:select', function(e) {
+      console.log('select2:select: ', e.params.data);
+      window.location.href = `/bow_strings/${e.params.data.id}`;
+    });
+
+</script>

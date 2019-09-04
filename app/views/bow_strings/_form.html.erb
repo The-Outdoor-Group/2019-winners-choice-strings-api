@@ -12,7 +12,7 @@
   <% end %>
 
   <%= form_tag colors_path, id: "color-form", method: :get do %>
-    <select id="color-new-bow-string" placeholder="Enter the color name"></select>
+    <select id="color-new-bow-string" placeholder="Enter the color name" class="form-control"></select>
     <!-- <#%= text_field_tag 'color', params[:term], placeholder: "Enter bow string color" %> -->
     <!-- <#%= submit_tag 'Search!' %> -->
   <% end %>
@@ -30,28 +30,41 @@
 
   <!-- <#%= render :partial => 'color', :collection => @colors %> -->
 
-  <div class="field">
-    <%= form.label :materials %>
-    <%= form.collection_check_boxes(:materials, @materials, :id, :name, options = {include_hidden: false}) %>
+  <div class="form-group row">
+    <%= form.label :materials, class: "col-md-2 col-form-label" %>
+    <div class="col-md-10">
+    <%= form.collection_check_boxes(:materials, @materials, :id, :name, options = {include_hidden: false}) do |b| %>
+      <div class="form-check form-check-inline">
+        <%= b.check_box(class: "form-check-input") %>
+        <%= b.label(class: "form-check-label")%>
+      </div>
+    <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :strand_1_image %>
-    <%= form.text_field :strand_1_image %>
+  <div class="form-group row">
+    <%= form.label :strand_1_image, class: "col-md-2 col-form-label" %>
+    <div class="col-md-10">
+      <%= form.text_field :strand_1_image, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :strand_2_image %>
-    <%= form.text_field :strand_2_image %>
+  <div class="form-group row">
+    <%= form.label :strand_2_image, class: "col-md-2 col-form-label" %>
+    <div class="col-md-10">
+      <%= form.text_field :strand_2_image, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :serving_image %>
-    <%= form.text_field :serving_image %>
+  <div class="form-group row">
+    <%= form.label :serving_image, class: "col-md-2 col-form-label" %>
+    <div class="col-md-10">
+      <%= form.text_field :serving_image, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit class: "btn btn-primary btn-edit" %>
   </div>
 <% end %>
 
@@ -59,6 +72,7 @@
     var $selectNewColor = $('select#color-new-bow-string');
 
     $selectNewColor.select2({
+      theme: "bootstrap",
       ajax: {
         allowClear: true,
         url: function(params) {

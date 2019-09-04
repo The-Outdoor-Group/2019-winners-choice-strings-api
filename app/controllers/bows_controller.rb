@@ -1,4 +1,5 @@
 class BowsController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_bow, only: [:show, :edit, :update, :destroy]
 
   # GET /bows

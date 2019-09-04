@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= render 'search' %>
+<hr>
 <article>
   <header>
     <h1 style="font-size: 250%; line-height: 4rem; padding-bottom: 1rem; border-bottom: 0.1rem solid;">
@@ -78,5 +80,7 @@
   </footer>
 </article>
 
-<%= link_to 'Edit', edit_bow_string_path(@bow_string) %> |
-<%= link_to 'Back', bow_strings_path %>
+<% if admin_signed_in? %>
+  <%= link_to 'Edit', edit_bow_string_path(@bow_string), class: "btn btn-primary" %>
+<% end %>
+<%= link_to 'Back', bow_strings_path, class: "btn btn-secondary" %>

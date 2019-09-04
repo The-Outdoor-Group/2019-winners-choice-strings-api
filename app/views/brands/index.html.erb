@@ -2,12 +2,9 @@
 
 <h1>Brands</h1>
 
-<%= form_tag brands_path, method: :get do %>
-  <%= text_field_tag 'name', params[:term], placeholder: "Enter brand name" %>
-  <%= submit_tag 'Search!' %>
-<% end %>
+<%= render 'search' %>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -20,8 +17,10 @@
       <tr>
         <td><%= brand.name %></td>
         <td><%= link_to 'Show', brand %></td>
-        <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
-        <td><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if admin_signed_in? %>
+          <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
+          <td><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -29,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Brand', new_brand_path %>
+<%= link_to 'New Brand', new_brand_path, class:"btn btn-primary"  %>

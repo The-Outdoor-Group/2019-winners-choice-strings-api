@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= render 'search' %>
+<hr>
 <p>
   <strong>Brand:</strong>
   <%= @bow.brand.name %>
@@ -15,5 +17,8 @@
   <%= @bow.name %>
 </p>
 
-<%= link_to 'Edit', edit_bow_path(@bow) %> |
-<%= link_to 'Back', bows_path %>
+<% if admin_signed_in? %>
+<%= link_to 'Edit', edit_bow_path(@bow), class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to 'Back', bows_path, class: "btn btn-secondary" %>

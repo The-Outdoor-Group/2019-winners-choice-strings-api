@@ -1,4 +1,5 @@
 class BowStringsController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_bow_string, only: [:show, :edit, :update, :destroy]
 
   # GET /bow_strings

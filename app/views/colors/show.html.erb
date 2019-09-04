@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= render 'search' %>
+
 <p>
   <strong>Name:</strong>
   <%= @color.name %>
@@ -20,5 +22,7 @@
   <%= @color.swatch_url %>
 </p>
 
-<%= link_to 'Edit', edit_color_path(@color) %> |
-<%= link_to 'Back', colors_path %>
+<% if admin_signed_in? %>
+<%= link_to 'Edit', edit_color_path(@color), class: "btn btn-primary" %>
+<% end %>
+<%= link_to 'Back', colors_path, class: "btn btn-secondary" %>

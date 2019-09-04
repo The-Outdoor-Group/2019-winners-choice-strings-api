@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
+  
   # get '/bow_strings/select_color/:id', to: 'bow_strings#select_color'
 
   resources :bow_strings

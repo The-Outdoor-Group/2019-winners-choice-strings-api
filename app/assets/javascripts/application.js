@@ -17,3 +17,5 @@
 //= require rails-ujs
 //= require select2-full
 //= require_tree .
+//= require popper
+//= require bootstrap
