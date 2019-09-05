@@ -16,10 +16,10 @@
       <tr>
         <td><%= material.name %></td>
         <td><%= material.description %></td>
-        <td><%= link_to 'Show', material %></td>
+        <td><%= link_to 'Show', material, class: "btn-sm btn-info" %></td>
         <% if admin_signed_in? %>
-          <td><%= link_to 'Edit', edit_material_path(material) %></td>
-          <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_material_path(material), class: "btn-sm btn-success" %></td>
+          <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -28,4 +28,6 @@
 
 <br>
 
-<%= link_to 'New Material', new_material_path, class:"btn btn-primary"  %>
+<% if admin_signed_in? %>
+  <%= link_to 'New Material', new_material_path, class:"btn btn-primary"  %>
+<% end %>

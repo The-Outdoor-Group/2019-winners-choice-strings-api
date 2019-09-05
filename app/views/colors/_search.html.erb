@@ -1,8 +1,11 @@
-<%= form_tag colors_path, method: :get do %>
-  <div class="input-group mb-4">
-    <%= text_field_tag 'name', params[:term], placeholder: "Enter color name or color code", class: "form-control" %>
-    <div class="input-group-append">
-      <%= submit_tag 'Search!', class:"btn btn-primary" %>
+<div class="search-form-container">
+  <h5>Search</h5>
+  <%= form_tag colors_path, method: :get do %>
+    <div class="input-group mb-4">
+      <%= text_field_tag 'name', params[:term], placeholder: "Enter color name or color code", class: "form-control" %>
+      <div class="input-group-append">
+        <%= submit_tag 'Search!', class:"btn btn-primary" %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

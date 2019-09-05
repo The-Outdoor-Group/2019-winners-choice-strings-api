@@ -14,10 +14,10 @@
     <% @types.each do |type| %>
       <tr>
         <td><%= type.name %></td>
-        <td><%= link_to 'Show', type %></td>
+        <td><%= link_to 'Show', type, class: "btn-sm btn-info" %></td>
         <% if admin_signed_in? %>
-          <td><%= link_to 'Edit', edit_type_path(type) %></td>
-          <td><%= link_to 'Destroy', type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_type_path(type), class: "btn-sm btn-success" %></td>
+          <td><%= link_to 'Destroy', type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -26,4 +26,6 @@
 
 <br>
 
-<%= link_to 'New Type', new_type_path, class:"btn btn-primary"  %>
+<% if admin_signed_in? %>
+  <%= link_to 'New Type', new_type_path, class:"btn btn-primary"  %>
+<% end %>

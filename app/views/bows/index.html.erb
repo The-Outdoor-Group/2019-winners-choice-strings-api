@@ -20,10 +20,10 @@
         <td><%= bow.brand.name %></td>
         <td><%= bow.type.name %></td>
         <td><%= bow.name %></td>
-        <td><%= link_to 'Show', bow %></td>
+        <td><%= link_to 'Show', bow, class: "btn-sm btn-info" %></td>
         <% if admin_signed_in? %>
-          <td><%= link_to 'Edit', edit_bow_path(bow) %></td>
-          <td><%= link_to 'Destroy', bow, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_bow_path(bow), class: "btn-sm btn-success" %></td>
+          <td><%= link_to 'Destroy', bow, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -31,5 +31,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Bow', new_bow_path, class:"btn btn-primary"  %>
+<% if admin_signed_in? %>
+  <%= link_to 'New Bow', new_bow_path, class:"btn btn-primary"  %>
+<% end %>

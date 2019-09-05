@@ -16,10 +16,10 @@
     <% @brands.each do |brand| %>
       <tr>
         <td><%= brand.name %></td>
-        <td><%= link_to 'Show', brand %></td>
+        <td><%= link_to 'Show', brand, class: "btn-sm btn-info" %></td>
         <% if admin_signed_in? %>
-          <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
-          <td><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_brand_path(brand), class: "btn-sm btn-success" %></td>
+          <td><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -27,5 +27,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Brand', new_brand_path, class:"btn btn-primary"  %>
+<% if admin_signed_in? %>
+  <%= link_to 'New Brand', new_brand_path, class:"btn btn-primary"  %>
+<% end %>
